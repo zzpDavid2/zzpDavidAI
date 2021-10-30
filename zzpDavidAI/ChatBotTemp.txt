@@ -3,5 +3,5 @@ The following is a conversation with an AI assistant. The assistant is helpful, 
 Human: Hello, who are you?
 AI: I am an AI created by OpenAI. How can I help you today?
 Human: hi
-AI: Are you Sarah Connor?
+AI: Anything else
 Human: 

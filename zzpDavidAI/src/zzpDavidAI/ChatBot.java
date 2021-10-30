@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -97,18 +98,17 @@ public class ChatBot {
 				
 				System.out.println(python.getAbsolutePath());
 				
-				String[] cmd = {"python", python.getAbsolutePath()};
+//				String[] cmd = {"python", python.getAbsolutePath()};
 				try {
-					Process p = Runtime.getRuntime().exec(cmd);
-				} catch (IOException e1) {
+					ProcessBuilder pb = new ProcessBuilder("python3", python.getAbsolutePath()).inheritIO();
+//					ProcessBuilder pb = new ProcessBuilder("open", "runP.sh");
+//					pb.directory(new File(System.getProperty("user.home")));
+					Process p = pb.start();
+					int exitCode = p.waitFor();
+					System.out.print(exitCode);
+				} catch (InterruptedException | IOException e1) {
 					e1.printStackTrace();
 					System.out.println("Failed to started python");
-				}
-				
-				try {
-					TimeUnit.SECONDS.sleep(2);
-				} catch (InterruptedException e2) {
-					e2.printStackTrace();
 				}
 				
 				try {
@@ -157,7 +157,16 @@ public class ChatBot {
 		frame.setVisible(true);
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
+		String[] args1 = new String[] {"python3", "-m", "pip", "install", "--upgrade", "pip"};
+		ProcessBuilder pb1 = new ProcessBuilder(args1).inheritIO();
+		Process proc1 = pb1.start();
+		proc1.waitFor();
+		String[] args2 = new String[] {"python3", "-m", "pip", "install", "openai"};
+		ProcessBuilder pb2 = new ProcessBuilder(args2).inheritIO();
+		Process proc2 = pb2.start();
+		proc2.waitFor();
+		
 		new ChatBot();
 	}
 }

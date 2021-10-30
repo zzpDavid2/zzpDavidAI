@@ -14,7 +14,7 @@ print(filePath)
 
 file = open(filePath, "a+")
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
