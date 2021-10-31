@@ -158,6 +158,7 @@ public class ChatBot {
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
+		new ChatBot();
 		String[] args1 = new String[] {"python3", "-m", "pip", "install", "--upgrade", "pip"};
 		ProcessBuilder pb1 = new ProcessBuilder(args1).inheritIO();
 		Process proc1 = pb1.start();
@@ -167,6 +168,5 @@ public class ChatBot {
 		Process proc2 = pb2.start();
 		proc2.waitFor();
 		
-		new ChatBot();
 	}
 }
